@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import GoogleMaps
+import Stripe
 
 
 @UIApplicationMain
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .black
 
         
+        STPPaymentConfiguration.shared().publishableKey = STRIPE_PUBLIC_KEY
 
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,

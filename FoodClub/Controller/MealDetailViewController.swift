@@ -43,10 +43,16 @@ class MealDetailViewController : UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = cardButton
-        
+
         
         
         loadMeal()
+    }
+    
+    
+    @IBAction func actionButton(_ sender: Any) {
+        performSegue(withIdentifier: "ActionButton", sender: nil)
+        print("Hola")
     }
     
     func loadMeal() {
@@ -81,8 +87,11 @@ class MealDetailViewController : UIViewController
                 // New cart
                 Tray.currentTray.restaurant = self.restaurant
                 Tray.currentTray.items.append(trayItem)
+
                 return
             }
+            
+
             
             
             
@@ -149,9 +158,9 @@ class MealDetailViewController : UIViewController
         
         UIView.animate(withDuration: 1.0, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: .curveLinear,  animations:
             {
-            
+
                 self.cardButton.customView?.transform = .identity
-                
+
         } ) {(complete) in
             self.updateCartBarButtonItem()
         }
@@ -186,19 +195,19 @@ class MealDetailViewController : UIViewController
     }
 }
 
-extension CAShapeLayer {
+ extension CAShapeLayer {
     func drawCircleAtLocation(location: CGPoint, withRadius radius: CGFloat, andColor color: UIColor, filled: Bool) {
         fillColor = filled ? color.cgColor : UIColor.white.cgColor
         strokeColor = color.cgColor
         let origin = CGPoint(x: location.x - radius, y: location.y - radius)
         path = UIBezierPath(ovalIn: CGRect(origin: origin, size: CGSize(width: radius * 2, height: radius * 2))).cgPath
     }
-    
+
 }
 
 private var handle: UInt8 = 0;
 
-extension UIBarButtonItem {
+ extension UIBarButtonItem {
     private var badgeLayer: CAShapeLayer? {
         if let b: AnyObject = objc_getAssociatedObject(self, &handle) as AnyObject? {
             return b as? CAShapeLayer
@@ -206,19 +215,19 @@ extension UIBarButtonItem {
             return nil
         }
     }
-    
+
     func addBadge(number: Int, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true) {
         guard let view = self.value(forKey: "view") as? UIView else { return }
-        
+
         badgeLayer?.removeFromSuperlayer()
-        
+
         // Initialize Badge
         let badge = CAShapeLayer()
         let radius = CGFloat(7)
         let location = CGPoint(x: view.frame.width - (radius + offset.x), y: (radius + offset.y))
         badge.drawCircleAtLocation(location: location, withRadius: radius, andColor: color, filled: filled)
         view.layer.addSublayer(badge)
-        
+
         // Initialiaze Badge's label
         let label = CATextLayer()
         label.string = "\(number)"
@@ -229,17 +238,17 @@ extension UIBarButtonItem {
         label.backgroundColor = UIColor.clear.cgColor
         label.contentsScale = UIScreen.main.scale
         badge.addSublayer(label)
-        
+
         // Save Badge as UIBarButtonItem property
         objc_setAssociatedObject(self, &handle, badge, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
-    
+
     func updateBadge(number: Int) {
         if let text = badgeLayer?.sublayers?.filter({ $0 is CATextLayer }).first as? CATextLayer {
             text.string = "\(number)"
         }
     }
-    
+
     func removeBadge() {
         badgeLayer?.removeFromSuperlayer()
     }

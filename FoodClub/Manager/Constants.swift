@@ -15,4 +15,5 @@ let CLIENT_SECRET: String = "VCgaaqnKozAUYROVcLRPRV5YdeGR8vE7TDovR6RnRpgf3RCWcf4
 
 let USERTYPE_CUSTOMER = "customer"
 
+let STRIPE_PUBLIC_KEY = "pk_test_slvTWNLRf7DjUoxEX9FW3dfM"
 

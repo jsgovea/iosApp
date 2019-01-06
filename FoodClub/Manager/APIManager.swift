@@ -147,6 +147,47 @@ class APIManager{
 
     }
     
+    func createOrder(stripeToken: String, completionHandler: @escaping(JSON) -> Void) {
+        let path = "api/customers/order/add"
+        let simpleArray = Tray.currentTray.items
+        let jsonArray = simpleArray.map {
+            item in
+            return [
+                "meal_id": item.meal.id!,
+                "extras": item.extras,
+                "quantity": item.quantity
+                
+            ]
+        }
+        if JSONSerialization.isValidJSONObject(jsonArray) {
+            do {
+                let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
+                let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                
+                let params: [String : Any] = [
+                    "access_token": self.accessToken,
+                    "stripe_token": stripeToken,
+                    "restaurant_id": "\(Tray.currentTray.restaurant!.id!)",
+                    "order_details": dataString,
+                    "address": Tray.currentTray.address!,
+                ]
+                
+                requestServer(.post, path, params, URLEncoding(), completionHandler)
+                
+            } catch {
+                print("JSON Serializer failed: \(error)")
+            }
+        }
+    }
     
+    func getLatestOrder(completionHandler: @escaping (JSON) -> Void) {
+        let path = "api/customers/order/latest"
+        let params: [String : Any] = [
+            "access_token": self.accessToken
+        ]
+        
+        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        
+    }
     
 }
