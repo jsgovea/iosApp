@@ -30,10 +30,10 @@ class User {
     
     func resetInfo()
     {
-        name = nil
-        email = nil
-        id = nil
-        pictureURL = nil
+        self.name = nil
+        self.email = nil
+        self.id = nil
+        self.pictureURL = nil
     }
    
 }

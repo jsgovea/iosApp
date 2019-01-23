@@ -29,9 +29,16 @@ class CartViewController: UIViewController {
     
     var locationManager: CLLocationManager!
     
+    func locationManager1(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            print("New location is \(location)")
+        }
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         
         tableView.dataSource = self
         addressTextField.delegate = self
@@ -74,6 +81,8 @@ class CartViewController: UIViewController {
         
     }
     
+    
+
     func getCurrentLocation() {
         if CLLocationManager.locationServicesEnabled()
         {
@@ -82,29 +91,29 @@ class CartViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
-            Tray.currentTray.address = "\(String(describing: locationManager))"
-            self.map.showsUserLocation = true
+            
+            self.map.showsUserLocation = false
         }
         
     }
     
     
     @IBAction func addPayment(_ sender: Any) {
-//        if self.addressTextField.text == "" {
+        if self.addressTextField.text == "" {
 
-//            let alertController = UIAlertController(title: "Opps!", message: "Debes agregar tu dirección", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Opps!", message: "Debes agregar tu dirección", preferredStyle: .alert)
 
-//            let action = UIAlertAction(title: "Ok!", style: .default) { (alert) in
-//                self.addressTextField.becomeFirstResponder()
-//            }
+            let action = UIAlertAction(title: "Ok!", style: .default) { (alert) in
+                self.addressTextField.becomeFirstResponder()
+            }
         
-//            alertController.addAction(action)
-//            self.present(alertController, animated: true, completion: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
 
-//        } else {
-//            Tray.currentTray.address = addressTextField.text
+        } else {
+            Tray.currentTray.address = addressTextField.text
             self.performSegue(withIdentifier: "AddPayment", sender: self)
-//        }
+        }
     }
 }
 
@@ -150,7 +159,7 @@ extension CartViewController : UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let address = textField.text
         let geocoder = CLGeocoder()
-//        Tray.currentTray.address = address
+        Tray.currentTray.address = address
         
         geocoder.geocodeAddressString(address!) { (placemarks, error) in
             if error != nil {

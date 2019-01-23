@@ -31,6 +31,7 @@
 		FE85500121CC265600D71EA2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE85500021CC265600D71EA2 /* Helpers.swift */; };
 		FE8DC8EF21C9C90300CADEAB /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8DC8EE21C9C90300CADEAB /* Meal.swift */; };
 		FE9CF5FC21AEA0270074E202 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9CF5FB21AEA0260074E202 /* MealsViewController.swift */; };
+		FEDD8D0121E1EE0C0061D906 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDD8D0021E1EE0C0061D906 /* PaymentViewController.swift */; };
 		FEF78DCB21B0B2D000566328 /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF78DCA21B0B2D000566328 /* MealDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		FE85500021CC265600D71EA2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		FE8DC8EE21C9C90300CADEAB /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		FE9CF5FB21AEA0260074E202 /* MealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
+		FEDD8D0021E1EE0C0061D906 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		FEF78DCA21B0B2D000566328 /* MealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 				FEF78DCA21B0B2D000566328 /* MealDetailViewController.swift */,
 				FE4D093C21C026AF00ACD7D4 /* CartViewController.swift */,
 				FE6E7A6321CF2149005CB1FF /* MapViewController.swift */,
+				FEDD8D0021E1EE0C0061D906 /* PaymentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				FE4D093B21BFB9BD00ACD7D4 /* LoginViewController.swift in Sources */,
 				FE4B3CF121C33ACA00AD3BA7 /* APIManager.swift in Sources */,
 				FE05812D21C7099F00EA530F /* RestaurantCell.swift in Sources */,
+				FEDD8D0121E1EE0C0061D906 /* PaymentViewController.swift in Sources */,
 				FE41514421CA097E00A0B08C /* MealViewCell.swift in Sources */,
 				FE3F9FDA21ABFA8E0056ED8A /* SWRevealViewController.m in Sources */,
 				FE3F9FDC21AC027C0056ED8A /* RestaurantListingTableViewController.swift in Sources */,

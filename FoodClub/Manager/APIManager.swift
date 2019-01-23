@@ -114,7 +114,7 @@ class APIManager{
         
         let url = baseURL?.appendingPathComponent(path)
         
-        //        refreshTokenIfNeed {
+//                refreshTokenIfNeed {
         Alamofire.request(url!, method: method, parameters: params, encoding: encoding, headers: nil).responseJSON { response in
             
             switch response.result {
@@ -127,8 +127,8 @@ class APIManager{
                 completionHandler(JSON.null)
                 break
             }
-            
-        }
+                    }
+//        }
     }
     
     //API getting restaurant list
@@ -148,7 +148,7 @@ class APIManager{
     }
     
     func createOrder(stripeToken: String, completionHandler: @escaping(JSON) -> Void) {
-        let path = "api/customers/order/add"
+        let path = "api/customers/order/add/"
         let simpleArray = Tray.currentTray.items
         let jsonArray = simpleArray.map {
             item in
@@ -162,7 +162,7 @@ class APIManager{
         if JSONSerialization.isValidJSONObject(jsonArray) {
             do {
                 let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
-                let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
                 
                 let params: [String : Any] = [
                     "access_token": self.accessToken,
@@ -181,7 +181,7 @@ class APIManager{
     }
     
     func getLatestOrder(completionHandler: @escaping (JSON) -> Void) {
-        let path = "api/customers/order/latest"
+        let path = "api/customers/order/latest/"
         let params: [String : Any] = [
             "access_token": self.accessToken
         ]

@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
             bLogout.isHidden = true
             FBManager.getFBUserData(completionHandler: {
                 self.bLogin.setTitle("Continuar como \(User.currentUser.name!)", for: .normal)
-                
+
             })
         }
         
@@ -37,16 +37,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        fbLoginSuccess = FBSDKAccessToken.current() != nil
-        if fbLoginSuccess {
-            performSegue(withIdentifier: "CustomerView", sender: nil)
-
-        }
-        
-//        if (FBSDKAccessToken.current() != nil && fbLoginSuccess == true)
-//        {
+//        fbLoginSuccess = FBSDKAccessToken.current() != nil
+//        if fbLoginSuccess {
 //            performSegue(withIdentifier: "CustomerView", sender: nil)
+//
 //        }
+        
+        if (FBSDKAccessToken.current() != nil && fbLoginSuccess == true)
+        {
+            performSegue(withIdentifier: "CustomerView", sender: nil)
+        }
         
     }
     
@@ -55,10 +55,10 @@ class LoginViewController: UIViewController {
         APIManager.shared.logout { (error) in
             if error == nil
             {
-                
+
                 FBManager.shared.logOut()
                 User.currentUser.resetInfo()
-                
+
                 self.bLogout.isHidden = true
             }
         }
